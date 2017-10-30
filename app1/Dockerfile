@@ -6,7 +6,7 @@ FROM python:3-onbuild
 
 # COPY startup script into known file location in container
 COPY start.sh /start.sh
-COPY helloworld .
+#COPY helloworld .
 
 # EXPOSE port 8000 to allow communication to/from server
 EXPOSE 8000
