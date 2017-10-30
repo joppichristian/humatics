@@ -7,8 +7,8 @@ from .permissions import IsAdminOrReadOnly
 
 
 class ImageView(viewsets.ModelViewSet):
-    queryset =  Image.objects.all();
-    serializer_class = ImageSerializers;
+    queryset =  Image.objects.all()
+    serializer_class = ImageSerializers
     permission_classes = (IsAdminOrReadOnly, )
     
 

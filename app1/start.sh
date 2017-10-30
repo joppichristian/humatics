@@ -13,6 +13,7 @@ python manage.py migrate
 echo "Collect static files"
 python manage.py collectstatic --noinput
 
+echo "from django.contrib.auth.models import User; User.objects.create_superuser('admin', 'admin@example.com', 'adminpass')" | python manage.py shell
 
 #Start Unicorn Process
 echo Starting Unicorn.
