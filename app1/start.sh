@@ -7,9 +7,10 @@ python manage.py collectstatic --noinput
 
 # Apply database migrations
 echo "Apply database migrations"
+cd helloworld/
 python manage.py makemigrations
 python manage.py migrate
-
+cd ..
 
 #Start Unicorn Process
 echo Starting Unicorn.
