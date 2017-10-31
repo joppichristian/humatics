@@ -7,3 +7,8 @@ class IsAdminOrReadOnly(BasePermission):
             return True
         else:
             return request.user.is_staff
+
+
+class AllowAny(BasePermission):
+    def has_permission(self, request, view):
+        return True

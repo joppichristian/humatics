@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
-import os
+import os, sys, gunicorn
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -116,6 +116,52 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+
+    'formatters': {
+        'verbose': {
+            'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+            'datefmt' : "%d/%b/%Y %H:%M:%S"
+        },
+        'simple': {
+            'format': '%(levelname)s %(message)s'
+        },
+    },
+
+    'handlers': {
+        'console':{
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+            'formatter': 'verbose'
+        },
+    },
+
+    'loggers': {
+        'api': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+        "gunicorn.error": {
+                "level": "DEBUG",
+                "handlers": ["console"],
+                "propagate": True,
+                "qualname": "gunicorn.error"
+        },
+
+        "gunicorn.access": {
+                "level": "DEBUG",
+                "handlers": ["console"],
+                "propagate": True,
+                "qualname": "gunicorn.access"
+        }
+    }
+
+}
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
@@ -135,3 +181,6 @@ USE_TZ = True
 
 STATIC_ROOT = '/usr/src/app/helloworld/static'
 STATIC_URL = '/static/'
+
+MEDIA_ROOT = '/usr/src/app/helloworld/media/'
+MEDIA_URL = '/media/'

@@ -8,6 +8,6 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('api.urls')),
     url(r'^api-token-auth/', obtain_auth_token),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 #TODO: Controllare Unicorn file statici

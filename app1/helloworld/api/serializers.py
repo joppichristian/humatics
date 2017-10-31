@@ -4,9 +4,8 @@ from django.contrib.auth.models import User
 
 class ImageSerializers (serializers.ModelSerializer):
     class Meta:
-        model = Image;
+        model = Image
         fields = '__all__'
-
 
 # Serializers define the API representation.
 class UserSerializer(serializers.HyperlinkedModelSerializer):
