@@ -8,7 +8,7 @@ from django.core.files.images import ImageFile
 from django.core.exceptions import ValidationError
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
-import logging, os
+import logging, os, urllib
 logger = logging.getLogger(__name__)
 
 
@@ -35,10 +35,10 @@ class ImageView(viewsets.ModelViewSet):
             print("DEBUG CASE 2")
             try:
                 out_path = os.path.join(os.path.dirname(__file__), 'img.jpg')
-                urllib.request.urlretrieve(pic_url, out_path)
+                urllib.request.urlretrieve(pic_urls, out_path)
                 out_file = open(out_path, 'rb+')
                 F = ImageFile(out_file)
-                F.name = os.path.basename(pic_url)
+                F.name = os.path.basename(pic_urls)
                 print("DEBUG F" + F.name)
             except:
                 raise ValidationError("Impossibile scaricare correttamente l'immmagine dal web.")
