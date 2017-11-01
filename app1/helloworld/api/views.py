@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets, views
+from rest_framework import viewsets, status
 from .models import Image
 from .serializers import ImageSerializers,UserSerializer
 from django.contrib.auth.models import User
@@ -44,7 +44,7 @@ class ImageView(viewsets.ModelViewSet):
                 raise ValidationError("Impossibile scaricare correttamente l'immmagine dal web.")
             obj = Image(name = name, urls = pic_urls, pic = F)
             obj.save()
-
+            return Response({"message": "Immagine caricata!"}, status.HTTP_200_OK)
 
         
 
