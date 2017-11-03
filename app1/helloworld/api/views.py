@@ -8,8 +8,7 @@ from django.core.files.images import ImageFile
 from django.core.exceptions import ValidationError
 from rest_framework.decorators import detail_route
 from rest_framework.response import Response
-import logging, os, urllib
-logger = logging.getLogger(__name__)
+import  os, urllib
 
 
 class ImageView(viewsets.ModelViewSet):
