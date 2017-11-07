@@ -40,7 +40,9 @@ class ImageView(viewsets.ModelViewSet):
                 raise ValidationError("Impossibile scaricare correttamente l'immmagine dal web.")
             obj = Image(name = name, urls = pic_urls, pic = F)
             obj.save()
-            return Response({"message": "Immagine caricata!"}, status.HTTP_200_OK)
+            im = settings.MEDIA_ROOT+'pics/'+F.name
+            R,G,B = channel_intensity(im)
+            return Response({"message": "Intensità: R:"+str(R)+" G:"+str(G)+" B:"+str(B) }, status.HTTP_200_OK)
 
         
 
